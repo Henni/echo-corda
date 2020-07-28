@@ -23,7 +23,8 @@ public class EchoResponder extends FlowLogic<Void> {
     public Void call() throws FlowException {
         // Responder flow logic goes here.
         UntrustworthyData<String> counterpartyData = counterpartySession.receive(String.class);
-        System.out.println(counterpartyData);
+        String msg = counterpartyData.unwrap(m -> m);
+        System.out.println(msg);
 
         return null;
     }
